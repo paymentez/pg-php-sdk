@@ -1,6 +1,6 @@
 # Paymentez PHP SDK
 
-### Instalation
+### Installation
 
 Install via composer (not hosted in packagist yet)
 
@@ -17,9 +17,9 @@ use Paymentez\Paymentez;
 
 // First setup your credentials provided by paymentez
 $applicationCode = "SOME_APP_CODE";
-$aplicationKey = "SOME_APP_KEY";
+$applicationKey = "SOME_APP_KEY";
 
-Paymentez::init($applicationCode, $aplicationKey);
+Paymentez::init($applicationCode, $applicationKey);
 ```
 
 Once time are set your credentials, you can use available resources.
