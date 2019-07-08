@@ -20,7 +20,8 @@ final class CardTest extends TestCase
     public function testSuccessCardList()
     {
         $list = $this->service->getList(1);
-        $this->assertIsObject($list->getData());
+        $this->assertIsObject($list);
+        $this->assertTrue(($list instanceof \stdClass));
         $this->assertIsNumeric($list->result_size);
         $this->assertIsArray($list->cards);
     }

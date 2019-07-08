@@ -38,11 +38,12 @@ final class CashTest extends TestCase
             'description' => "XXXXXXXXXXXX"
         ]);
 
-        $this->assertIsObject($order->getData());
-        $this->assertObjectHasAttribute('application', $order->getData());
-        $this->assertObjectHasAttribute('commerce', $order->getData());
-        $this->assertObjectHasAttribute('user', $order->getData());
-        $this->assertObjectHasAttribute('transaction', $order->getData());
+        $this->assertIsObject($order);
+        $this->assertTrue(($order instanceof \stdClass));
+        $this->assertObjectHasAttribute('application', $order);
+        $this->assertObjectHasAttribute('commerce', $order);
+        $this->assertObjectHasAttribute('user', $order);
+        $this->assertObjectHasAttribute('transaction', $order);
     }
 
     public function testFailParamsGenerateOrder()

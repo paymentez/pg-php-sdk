@@ -2,6 +2,7 @@
 
 namespace Paymentez\Resources;
 
+use stdClass;
 use GuzzleHttp\Exception\RequestException;
 
 use Paymentez\Exceptions\{
@@ -20,7 +21,7 @@ class Cash extends Resource
 
     public function generateOrder(array $carrier,
                              array $user,
-                             array $order): self
+                             array $order): stdClass
     {
         $this->getRequestor()->validateRequestParams([
             'id' => 'string'
@@ -53,7 +54,7 @@ class Cash extends Resource
 
         if ($response->getStatusCode() == 200) {
             $this->setData(json_decode($response->getBody()));
-            return $this;
+            return $this->getData();
         }
 
         throw new PaymentezErrorException("Can't generate cash order.");

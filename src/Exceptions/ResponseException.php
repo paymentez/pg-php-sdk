@@ -34,6 +34,6 @@ class ResponseException
             error_log("=========== // ERROR ON PAYMENTEZ API // ===========");
         }
 
-        throw new PaymentezErrorException("[{$type}]: {$exceptionText}");
+        throw new PaymentezErrorException("[{$type}]: {$exceptionText}", $responseHttpCode);
     }
 }

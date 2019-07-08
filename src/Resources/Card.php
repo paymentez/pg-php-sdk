@@ -2,53 +2,47 @@
 
 namespace Paymentez\Resources;
 
+use stdClass;
+use GuzzleHttp\Exception\RequestException;
+
 use Paymentez\Exceptions\{
     PaymentezErrorException,
     ResponseException
 };
 
-use GuzzleHttp\Exception\RequestException;
-
 
 class Card extends Resource
 {
-    const ADD_ENDPOINT = 'add';
     const LIST_ENDPOINT = 'list';
+    const DELETE_ENDPOINT = 'delete';
 
     const ENDPOINTS = [
-        self::ADD_ENDPOINT => "card/add",
-        self::LIST_ENDPOINT => "card/list"
+        self::LIST_ENDPOINT => "card/list",
+        self::DELETE_ENDPOINT => "card/delete/"
     ];
 
     /**
-     * @param array $user
      * @param array $card
-     * @return $this
-     * @throws Exceptions\RequestException
-     * @throws PaymentezErrorException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @param array $user
      * @return Resource
+     * @throws RequestException
      */
-    public function add(array $user, array $card): self
+    public function delete(string $token, array $user): stdClass
     {
         $this->getRequestor()->validateRequestParams([
-            'id' => 'numeric',
-            'email' => 'string'
-        ], $user);
+            'totken' => 'string'
+        ], [
+            'token' => $token
+        ]);
 
         $this->getRequestor()->validateRequestParams([
-            'number' => 'string',
-            'holder_name' => 'string',
-            'expiry_month' => 'numeric',
-            'expiry_year' => 'numeric',
-            'cvc' => 'string',
-            'type' => 'string'
-        ], $card);
+            'id' => 'numeric'
+        ], $user);
 
         try {
-            $response = $this->getRequestor()->post(self::ENDPOINTS[self::ADD_ENDPOINT], [
-                'user' => $user,
-                'card' => $card
+            $response = $this->getRequestor()->post(self::ENDPOINTS[self::DELETE_ENDPOINT], [
+                'card' => $card,
+                'user' => $user
             ]);
         } catch (RequestException $exception) {
             ResponseException::launch($exception);
@@ -56,19 +50,19 @@ class Card extends Resource
 
         if ($response->getStatusCode() == 200) {
             $this->setData(json_decode($response->getBody()));
-            return $this;
+            return $this->getData();
         }
 
-        throw new PaymentezErrorException("Error on add card.");
+        throw new PaymentezErrorException("Error on delete card.");
     }
 
     /**
-     * @param $uid
+     * @param string|mixed $uid
      * @throws PaymentezErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @return Resource
      */
-    public function getList($uid): self
+    public function getList($uid): stdClass
     {
         $params = ['uid' => (string) $uid];
         $this->getRequestor()->validateRequestParams([
@@ -83,7 +77,7 @@ class Card extends Resource
 
         if ($response->getStatusCode() == 200) {
             $this->setData(json_decode($response->getBody()));
-            return $this;
+            return $this->getData();
         }
 
         throw new PaymentezErrorException("Error on get list of cards.");

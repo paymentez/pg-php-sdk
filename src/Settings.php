@@ -4,7 +4,8 @@ namespace Paymentez;
 
 use Paymentez\Resources\{
     Cash,
-    Card
+    Card,
+    Charge
 };
 
 class Settings
@@ -34,6 +35,10 @@ class Settings
             'class' => Cash::class,
             'api' => self::NOCCAPI
         ],
+        'charge' => [
+            'class' => Charge::class,
+            'api' => self::CCAPI
+        ]
     ];
 
     const DEFAULT_HEADERS = [

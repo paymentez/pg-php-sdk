@@ -27,10 +27,6 @@ class Requestor
      */
     protected $response;
 
-    /**
-     * @var string
-     */
-    private $authToken;
 
     /**
      * Requestor constructor.
@@ -39,7 +35,7 @@ class Requestor
      * @param string $authToken
      * @throws RequestException
      */
-    public function __construct(array $apiUris, bool $production, string $authToken)
+    public function __construct(array $apiUris, bool $production)
     {
         $env = ($production) ? 'production' : 'staging';
         $this->client = new Client([
@@ -48,8 +44,6 @@ class Requestor
 
             'timeout' => Settings::DEFAULT_SECONDS_TIMEOUT
         ]);
-
-        $this->authToken = $authToken;
     }
 
     /**
@@ -109,7 +103,7 @@ class Requestor
                          bool $hasVersion = true): ResponseInterface
     {
         $mergedHeaders = self::mergeHeaders(array_merge($headers, [
-            'Auth-Token' => $this->authToken
+            'Auth-Token' => Paymentez::auth() // Generate new token for each request
         ]));
 
         $resourcePath = [
