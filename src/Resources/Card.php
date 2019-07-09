@@ -22,18 +22,22 @@ class Card extends Resource
     ];
 
     /**
-     * @param array $card
+     * @param string $token
      * @param array $user
-     * @return Resource
-     * @throws RequestException
+     * @return stdClass
+     * @throws PaymentezErrorException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Paymentez\Exceptions\RequestException
      */
     public function delete(string $token, array $user): stdClass
     {
+        $card = [
+            'token' => $token
+        ];
+
         $this->getRequestor()->validateRequestParams([
             'totken' => 'string'
-        ], [
-            'token' => $token
-        ]);
+        ], $card);
 
         $this->getRequestor()->validateRequestParams([
             'id' => 'numeric'
@@ -57,10 +61,11 @@ class Card extends Resource
     }
 
     /**
-     * @param string|mixed $uid
+     * @param $uid
+     * @return stdClass
      * @throws PaymentezErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @return Resource
+     * @throws \Paymentez\Exceptions\RequestException
      */
     public function getList($uid): stdClass
     {

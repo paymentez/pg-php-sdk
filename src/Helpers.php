@@ -7,6 +7,13 @@ use \Exception;
 
 class Helpers
 {
+    /**
+     * Validate array structure with a schema
+     * @param array $schema
+     * @param array $arr
+     * @return array
+     * @throws Exception
+     */
     public static function validateArray(array $schema, array $arr): array
     {
         $schemaKeys = array_keys($schema);

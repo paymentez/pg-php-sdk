@@ -19,6 +19,15 @@ class Cash extends Resource
         self::GENERATE_ORDER_ENDPOINT => 'order/'
     ];
 
+    /**
+     * @param array $carrier
+     * @param array $user
+     * @param array $order
+     * @return stdClass
+     * @throws PaymentezErrorException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Paymentez\Exceptions\RequestException
+     */
     public function generateOrder(array $carrier,
                              array $user,
                              array $order): stdClass

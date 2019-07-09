@@ -27,7 +27,15 @@ class Charge extends Resource
         self::REFUND_ENDPOINT => "transaction/refund/"
     ];
 
-
+    /**
+     * @param string $token
+     * @param array $order
+     * @param array $user
+     * @return stdClass
+     * @throws PaymentezErrorException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Paymentez\Exceptions\RequestException
+     */
     public function create(string $token, array $order, array $user): stdClass
     {
         $card = [
