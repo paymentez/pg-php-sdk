@@ -50,7 +50,7 @@ class Charge extends Resource
         ], $order);
 
         $this->getRequestor()->validateRequestParams([
-            'id' => 'numeric',
+            'id' => 'string',
             'email' => 'string'
         ], $user);
 
@@ -97,7 +97,7 @@ class Charge extends Resource
         ], $order);
 
         $this->getRequestor()->validateRequestParams([
-            'id' => 'numeric',
+            'id' => 'string',
             'email' => 'string'
         ], $user);
 
@@ -193,7 +193,7 @@ class Charge extends Resource
         ], $transaction);
 
         $this->getRequestor()->validateRequestParams([
-            'id' => 'numeric'
+            'id' => 'string'
         ], $user);
 
         try {
