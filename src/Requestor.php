@@ -126,8 +126,8 @@ class Requestor
     /**
      * @param array $schema
      * @param array $params
-     * @throws RequestException
      * @return bool
+     * @throws RequestException
      */
     public function validateRequestParams(array $schema, array $params): bool
     {

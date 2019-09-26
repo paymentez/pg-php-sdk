@@ -28,7 +28,7 @@ class Helpers
         if (count($intersect) < count($schemaKeys)) {
             $missingKeys = array_merge(array_diff($intersect, $schemaKeys), array_diff($schemaKeys, $intersect));
             $output['errors']['missing_keys'] = $missingKeys;
-            $output['errors']['total'] ++;
+            $output['errors']['total']++;
         }
 
         $supportValidationType = [
@@ -54,7 +54,7 @@ class Helpers
 
                 if (!$isValid) {
                     $output['errors']['values'][$key][$type] = "Not a valid {$type} value.";
-                    $output['errors']['total'] ++;
+                    $output['errors']['total']++;
                 }
             }
         }

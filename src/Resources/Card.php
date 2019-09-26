@@ -69,7 +69,7 @@ class Card extends Resource
      */
     public function getList($uid): stdClass
     {
-        $params = ['uid' => (string) $uid];
+        $params = ['uid' => (string)$uid];
         $this->getRequestor()->validateRequestParams([
             'uid' => 'numeric'
         ], $params);

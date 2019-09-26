@@ -10,8 +10,8 @@ class ResponseException
     /**
      * @param ClientException $clientException
      * @param bool $logger
-     * @throws PaymentezErrorException
      * @return void
+     * @throws PaymentezErrorException
      */
     public static function launch(RequestException $clientException, bool $logger = true)
     {
