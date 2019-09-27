@@ -2,13 +2,9 @@
 
 namespace Paymentez\Resources;
 
-use stdClass;
 use GuzzleHttp\Exception\RequestException;
-
-use Paymentez\Exceptions\{
-    ResponseException,
-    PaymentezErrorException
-};
+use Paymentez\Exceptions\{PaymentezErrorException, ResponseException};
+use stdClass;
 
 
 class Cash extends Resource
@@ -29,8 +25,8 @@ class Cash extends Resource
      * @throws \Paymentez\Exceptions\RequestException
      */
     public function generateOrder(array $carrier,
-                             array $user,
-                             array $order): stdClass
+                                  array $user,
+                                  array $order): stdClass
     {
         $this->getRequestor()->validateRequestParams([
             'id' => 'string'
@@ -42,7 +38,7 @@ class Cash extends Resource
         ], $user);
 
         $this->getRequestor()->validateRequestParams([
-            'dev_reference' =>  'string',
+            'dev_reference' => 'string',
             'amount' => 'numeric',
             'expiration_days' => 'numeric',
             'recurrent' => 'bool',

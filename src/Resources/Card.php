@@ -2,13 +2,9 @@
 
 namespace Paymentez\Resources;
 
-use stdClass;
 use GuzzleHttp\Exception\RequestException;
-
-use Paymentez\Exceptions\{
-    PaymentezErrorException,
-    ResponseException
-};
+use Paymentez\Exceptions\{PaymentezErrorException, ResponseException};
+use stdClass;
 
 
 class Card extends Resource
@@ -69,7 +65,7 @@ class Card extends Resource
      */
     public function getList($uid): stdClass
     {
-        $params = ['uid' => (string) $uid];
+        $params = ['uid' => (string)$uid];
         $this->getRequestor()->validateRequestParams([
             'uid' => 'numeric'
         ], $params);

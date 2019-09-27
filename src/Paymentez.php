@@ -28,8 +28,8 @@ class Paymentez
 
     /**
      * Set a credentials and environment for Paymentez API
-     * @throws \Exception
      * @return void
+     * @throws \Exception
      */
     public static function init(string $code, string $apiKey, bool $production = false)
     {
@@ -49,7 +49,7 @@ class Paymentez
             throw new RequestException("Missing Paymentez API key or code, ensure that execute init method.");
         }
 
-        $now = (string) (new DateTime)->getTimestamp();
+        $now = (string)(new DateTime)->getTimestamp();
 
         $uniqToken = implode('', [
             self::$apiKey,

@@ -2,15 +2,11 @@
 
 namespace Paymentez;
 
-use Paymentez\Resources\{
-    Cash,
-    Card,
-    Charge
-};
+use Paymentez\Resources\{Card, Cash, Charge};
 
 class Settings
 {
-    const DEFAULT_SECONDS_TIMEOUT = 10;
+    const DEFAULT_SECONDS_TIMEOUT = 90;
     const CCAPI = 'ccapi';
     const NOCCAPI = 'noccapi';
     const API_VERSION = "v2";

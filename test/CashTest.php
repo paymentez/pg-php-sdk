@@ -1,11 +1,8 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
+use Paymentez\Exceptions\{PaymentezErrorException, RequestException};
 use Paymentez\Paymentez;
-use Paymentez\Exceptions\{
-    PaymentezErrorException,
-    RequestException
-};
+use PHPUnit\Framework\TestCase;
 
 final class CashTest extends TestCase
 {

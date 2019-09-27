@@ -2,12 +2,9 @@
 
 namespace Paymentez;
 
+use GuzzleHttp\{Client, RequestOptions};
 use Paymentez\Exceptions\RequestException;
 use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\{
-    Client,
-    RequestOptions
-};
 
 
 class Requestor
@@ -126,8 +123,8 @@ class Requestor
     /**
      * @param array $schema
      * @param array $params
-     * @throws RequestException
      * @return bool
+     * @throws RequestException
      */
     public function validateRequestParams(array $schema, array $params): bool
     {
