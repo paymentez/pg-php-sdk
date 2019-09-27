@@ -2,13 +2,9 @@
 
 namespace Paymentez\Resources;
 
-use stdClass;
 use GuzzleHttp\Exception\RequestException;
-
-use Paymentez\Exceptions\{
-    PaymentezErrorException,
-    ResponseException
-};
+use Paymentez\Exceptions\{PaymentezErrorException, ResponseException};
+use stdClass;
 
 
 class Card extends Resource

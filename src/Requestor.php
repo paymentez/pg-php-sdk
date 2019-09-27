@@ -2,12 +2,9 @@
 
 namespace Paymentez;
 
+use GuzzleHttp\{Client, RequestOptions};
 use Paymentez\Exceptions\RequestException;
 use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\{
-    Client,
-    RequestOptions
-};
 
 
 class Requestor

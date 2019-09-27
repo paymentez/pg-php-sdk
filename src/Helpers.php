@@ -2,7 +2,7 @@
 
 namespace Paymentez;
 
-use \Exception;
+use Exception;
 
 
 class Helpers
