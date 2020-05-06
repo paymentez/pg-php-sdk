@@ -17,7 +17,7 @@ class Settings
             'staging' => "https://ccapi-stg.paymentez.com"
         ],
         self::NOCCAPI => [
-            'production' => "https://noccapi-prod.paymentez.com",
+            'production' => "https://noccapi.paymentez.com",
             'staging' => "https://noccapi-stg.paymentez.com"
         ]
     ];

@@ -178,7 +178,8 @@ class Charge extends Resource
     public function verify(string $type,
                            string $value,
                            string $transactionId,
-                           array $user): stdClass
+                           array $user,
+                           bool $more_info = null): stdClass
     {
         $transaction = [
             'id' => (empty($transactionId) ? null : $transactionId)
@@ -192,13 +193,19 @@ class Charge extends Resource
             'id' => 'string'
         ], $user);
 
+        $request = [
+            'user' => $user,
+            'transaction' => $transaction,
+            'type' => $type,
+            'value' => strval($value)
+        ];
+
+        if ($more_info) {
+            $request['more_info'] = $more_info;
+        }
+
         try {
-            $response = $this->getRequestor()->post(self::ENDPOINTS[self::VERIFY_ENDPOINT], [
-                'user' => $user,
-                'transaction' => $transaction,
-                'type' => $type,
-                'value' => strval($value)
-            ]);
+            $response = $this->getRequestor()->post(self::ENDPOINTS[self::VERIFY_ENDPOINT], $request);
         } catch (RequestException $requestException) {
             ResponseException::launch($requestException);
         }
@@ -219,7 +226,7 @@ class Charge extends Resource
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Paymentez\Exceptions\RequestException
      */
-    public function refund(string $transactionId, float $amount = null): stdClass
+    public function refund(string $transactionId, float $amount = null, bool $more_info = null): stdClass
     {
         $transaction = [
             'id' => (empty($transactionId) ? null : $transactionId)
@@ -237,6 +244,10 @@ class Charge extends Resource
             $this->getRequestor()->validateRequestParams([
                 'amount' => 'numeric'
             ], $order);
+        }
+
+        if ($more_info) {
+            $request['more_info'] = $more_info;
         }
 
         try {
