@@ -32,7 +32,7 @@ class Card extends Resource
         ];
 
         $this->getRequestor()->validateRequestParams([
-            'totken' => 'string'
+            'token' => 'string'
         ], $card);
 
         $this->getRequestor()->validateRequestParams([
