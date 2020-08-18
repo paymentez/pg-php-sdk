@@ -2,7 +2,7 @@
     "name": "paymentez/sdk",
     "description": "Paymentez PHP Client",
     "type": "library",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "authors": [
         {
             "name": "Developer Team",
