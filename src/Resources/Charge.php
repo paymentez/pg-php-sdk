@@ -246,13 +246,10 @@ class Charge extends Resource
             ], $order);
         }
 
-        if ($more_info) {
-            $request['more_info'] = $more_info;
-        }
-
         try {
             $request = [
-                'transaction' => $transaction
+                'transaction' => $transaction,
+                'more_info' => $more_info,
             ];
 
             if (isset($order)) {
